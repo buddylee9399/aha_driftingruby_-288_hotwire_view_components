@@ -1,0 +1,27 @@
+<style>
+  .item_component__completed {
+    text-decoration: line-through;
+  }
+
+  .item_component__button_inline {
+    display: inline-block;
+  }
+
+  .item_component__button_link {
+    background: none;
+    border: none;
+    padding: 0;
+    color: #0275d8;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+</style>
+<%= turbo_frame_tag dom_id(item) do %>
+  <%= content_tag :div, class: class_names(item_component__completed: item.completed?) do %>
+    <%= item.name %>
+    <% text = item.completed? ? 'make active' : 'complete' %>
+    <div class='item_component__button_inline'>
+      <%= button_to text, [list, item], method: :patch, class: 'item_component__button_link' %>
+    </div>
+  <% end %>
+<% end %>
