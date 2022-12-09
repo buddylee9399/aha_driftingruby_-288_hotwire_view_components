@@ -2,6 +2,10 @@
   <p>
     <strong>Name:</strong>
     <%= list.name %>
+    Total:
+    <%= list.items.count %>
+    Uncompleted:
+    <%= list.items.where(completed: false).count %>
   </p>
 
 </div>
